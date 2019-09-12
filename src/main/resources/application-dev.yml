@@ -1,0 +1,15 @@
+server:
+  port: 10070
+  servlet:
+    context-path: /baozhang
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://47.95.14.192:27017/
+      database: baozhang
+  redis:
+    host: 47.95.14.192
+    port: 6379
+    timeout: 6000s
+    password: root
