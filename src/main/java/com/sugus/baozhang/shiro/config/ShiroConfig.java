@@ -46,13 +46,15 @@ public class ShiroConfig {
         // 过滤器链定义映射
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
+        filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");
         filterChainDefinitionMap.put("/img/**", "anon");
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/html/**", "anon");
-        filterChainDefinitionMap.put("/api/user/save", "anon");
         filterChainDefinitionMap.put("/getVerifyCode", "anon");
+        filterChainDefinitionMap.put("/sendEmail", "anon");
+        filterChainDefinitionMap.put("/api/user/save", "anon");
         // 所有url都必须认证通过才可以访问
         filterChainDefinitionMap.put("/**", "authc");
 
@@ -60,9 +62,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/logout", "logout");
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        //shiroFilterFactoryBean.setLoginUrl("/login");
         // 配器shiro认登录页面地址，前后端分离中登录累面跳转应由前端路由控制，后台仅返回json数据, 对应LoginController中un_auth请求
-        //shiroFilterFactoryBean.setLoginUrl("/un_auth");
+        shiroFilterFactoryBean.setLoginUrl("/un_auth");
 
         // 登录成功后要跳转的链接, 此项目是前后端分离，故此行注释掉，登录成功之后返回用户基本信息及token给前端
         // shiroFilterFactoryBean.setSuccessUrl("/index");

@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Getter
@@ -99,10 +100,15 @@ public class User {
      */
     private Date updateTime;
 
+    /**
+     * User初始化方法
+     * @param user  user
+     */
     public static void init(User user) {
         user.setUserName(UUID.randomUUID().toString());
         user.setSalt(EncryptedUtil.getMD5(user.getUserName()));
         user.setPassword(new Md5Hash(user.getPassword(), user.getSalt(), 2).toString());
+        user.setVerificationCode(String.valueOf(new Random().ints(1, 1000, 10000).toArray()[0]));
         user.setState(0);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());

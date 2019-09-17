@@ -13,3 +13,12 @@ spring:
     port: 6379
     timeout: 6000s
     password: root
+  mail:
+    host: smtp.163.com
+    username: sugusron@163.com
+    password: V0FORy4uMTk5NDA1MDU=
+    default-encoding: UTF-8
+
+mail:
+  fromMail:
+    addr: sugusron@163.com

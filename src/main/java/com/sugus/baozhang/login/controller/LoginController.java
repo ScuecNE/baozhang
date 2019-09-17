@@ -12,10 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -76,7 +73,7 @@ public class LoginController {
 
     @RequestMapping("/unauthorized")
     public Result unauthorized() {
-        return ResultUtil.failure(HttpStatus.UNAUTHORIZED.value(), "用户无权限！", null);
+        return ResultUtil.failure(HttpStatus.FORBIDDEN.value(), "用户无权限！", null);
     }
 
     @RequestMapping("/getVerifyCode")
@@ -108,6 +105,11 @@ public class LoginController {
         responseOutputStream.flush();
         responseOutputStream.close();
         jpegOutputStream.close();
+    }
+
+    @RequestMapping(value = "sendEmail", method = RequestMethod.POST)
+    public Result sendEmail() {
+        return ResultUtil.success("");
     }
 
 }
